@@ -22,6 +22,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/remotes', [RemoteController::class, 'create']);
     Route::get('/remotes', [RemoteController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

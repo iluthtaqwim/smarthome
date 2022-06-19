@@ -25,9 +25,18 @@ class RemoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'label' => 'required|string|max:255',
+            'hadware_code' => 'string|max:255',
+            'item_id' => 'integer|max:255',
+            'flag' => 'required',
+        ]);
+        $create = Remote::create($request->all());
+        if($create) {
+            return response()->json($create, 201);
+        }
     }
 
     /**
